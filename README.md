@@ -23,3 +23,8 @@ notifier.add_message({
 messages = notifier.get_messages()
 print(messages)
 ```
+
+## Features
+Add messages to the queue
+Retrieve messages from the queue
+Clear the queue
