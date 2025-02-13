@@ -16,10 +16,8 @@ from pynotiq_client import PyNotiQ
 notifier = PyNotiQ(queue_file="queue.json")
 
 notifier.add_message({
-    "title": "Silent Hill PS2",
-    "price": 25,
-    "url": "https://example.com/item",
-    "category": "Games"
+    "id" : 1,
+    "title": "My Cool message"
 })
 
 messages = notifier.get_messages()
