@@ -16,12 +16,19 @@ class PyNotiQ:
 
     def add_message(self, message):
         """Adds a message to the queue"""
-        message["id"] = message.get("id", str(uuid.uuid4()))  # Unique ID
+        if "id" not in message:
+            message["id"] = message.get("id", str(uuid.uuid4()))  # Unique ID
+        
         message["timestamp"] = datetime.utcnow().isoformat()  # Add timestamp
 
         # Read existing queue
         with open(self.queue_file, "r") as f:
             queue = json.load(f)
+
+        # Check if message already exists
+        item_id = message["id"]
+        if any(item["id"] == item_id for item in queue):
+            return
 
         queue.append(message)  # Add new message
 
