@@ -36,7 +36,7 @@ class PyNotiQ:
         with open(self.queue_file, "w") as f:
             json.dump(queue, f, indent=4)
 
-        print(f"✅ Message added: {message['title']}")
+        print(f"✅ Message added: {message['id']}")
 
     def get_messages(self):
         """Returns all messages from the queue"""
