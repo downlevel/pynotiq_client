@@ -17,7 +17,10 @@ notifier = PyNotiQ(queue_file="queue.json")
 
 notifier.add_message({
     "id" : 1,
-    "title": "My Cool message"
+    "message" : {
+        "message_field_1" : "mesage field 1 value",
+        "message_field_2" : "mesage field 2 value"
+    }
 })
 
 messages = notifier.get_messages()
