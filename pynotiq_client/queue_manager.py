@@ -75,17 +75,3 @@ class PyNotiQ:
         with open(self.queue_file, "w") as f:
             json.dump(queue, f, indent=4)
         print(f"🔄 Message updated: {new_message}")
-
-    def update_message_by_field_name(self, field_name, new_message):
-        """Updates a message field in the queue"""
-        with open(self.queue_file, "r") as f:
-            queue = json.load(f)
-
-        for item in queue:
-            if item[field_name] == new_message[field_name]:
-                item.update(new_message)
-                break
-
-        with open(self.queue_file, "w") as f:
-            json.dump(queue, f, indent=4)
-        print(f"🔄 Message updated: {new_message}")
