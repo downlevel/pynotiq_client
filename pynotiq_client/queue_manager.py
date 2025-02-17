@@ -48,3 +48,42 @@ class PyNotiQ:
         with open(self.queue_file, "w") as f:
             json.dump([], f)
         print("🚀 Queue cleared!")
+
+    def remove_message(self, item_id):
+        """Removes a message from the queue"""
+        with open(self.queue_file, "r") as f:
+            queue = json.load(f)
+
+        new_queue = [item for item in queue if item["id"] != item_id]
+
+        with open(self.queue_file, "w") as f:
+            json.dump(new_queue, f, indent=4)
+        print(f"🗑 Message removed: {item_id}")
+
+    def update_message(self, new_message):
+        """Updates a message in the queue"""
+        with open(self.queue_file, "r") as f:
+            queue = json.load(f)
+
+        for item in queue:
+            if item["id"] == new_message["id"]:
+                item.update(new_message)
+                break
+
+        with open(self.queue_file, "w") as f:
+            json.dump(queue, f, indent=4)
+        print(f"🔄 Message updated: {new_message}")
+
+    def update_message_by_field_name(self, field_name, new_message):
+        """Updates a message field in the queue"""
+        with open(self.queue_file, "r") as f:
+            queue = json.load(f)
+
+        for item in queue:
+            if item[field_name] == new_message[field_name]:
+                item.update(new_message)
+                break
+
+        with open(self.queue_file, "w") as f:
+            json.dump(queue, f, indent=4)
+        print(f"🔄 Message updated: {new_message}")
