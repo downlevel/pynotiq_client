@@ -16,10 +16,11 @@ from pynotiq_client import PyNotiQ
 notifier = PyNotiQ(queue_file="queue.json")
 
 notifier.add_message({
-    "id" : 1,
-    "message" : {
-        "message_field_1" : "mesage field 1 value",
-        "message_field_2" : "mesage field 2 value"
+    "Id": "bab0cff9-637b-425f-98a2-fe1eb94426ee",
+    "Timestamp": "2025-02-17T22:59:39.750319",
+    "MessageBody": {
+        "message_field_1": "Message Field Value 1",
+        "message_field_2": "Message Field Value 2",
     }
 })
 

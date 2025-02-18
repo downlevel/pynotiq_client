@@ -56,20 +56,22 @@ class PyNotiQ:
         with open(self.queue_file, "r") as f:
             queue = json.load(f)
 
-        new_queue = [item for item in queue if item["id"] != item_id]
+        new_queue = [item for item in queue if item["Id"] != item_id]
 
         with open(self.queue_file, "w") as f:
             json.dump(new_queue, f, indent=4)
         print(f"🗑 Message removed: {item_id}")
 
-    def update_message(self, new_message):
+    def update_message(self, item_id, new_message):
         """Updates a message in the queue"""
         with open(self.queue_file, "r") as f:
             queue = json.load(f)
 
         for item in queue:
-            if item["id"] == new_message["id"]:
-                item.update(new_message)
+            if item["Id"] == item_id:
+                item["Timestamp"] = datetime.utcnow().isoformat()  # Add timestamp
+                item["MessageBody"] = new_message
+                #item.update(new_message)
                 break
 
         with open(self.queue_file, "w") as f:
