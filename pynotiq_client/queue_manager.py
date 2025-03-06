@@ -19,7 +19,9 @@ class PyNotiQ:
         """Adds a message to the queue"""
         if item_id is None:
             item_queue["Id"] = message.get("id", str(uuid.uuid4()))  # Unique ID
-        
+        else
+            item_queue["Id"] = item_id
+            
         item_queue["Timestamp"] = datetime.utcnow().isoformat()  # Add timestamp
 
         # Read existing queue
